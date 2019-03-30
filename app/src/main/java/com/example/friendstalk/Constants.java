@@ -11,5 +11,7 @@ public class Constants {
     public static final String JSON_CALL_USER = "call_user";
     public static final String CALL_USER = "me.pntutorial.USERCALL";//Не нашел переменную вынужден был её добавить
 
+    public static final String USER_NUM = "num_connerct_to_me";//Не нашел переменную вынужден был её добавить
+
 
 }

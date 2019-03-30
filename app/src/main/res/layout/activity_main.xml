@@ -7,8 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/pn_red"
-        >
+        android:background="@color/pn_red">
 
         <TextView
             android:id="@+id/main_username"
@@ -55,14 +54,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <ImageButton
+                android:id="@+id/call_btn"
                 android:background="@drawable/round_button_send"
                 android:src="@drawable/ic_action_call"
                 android:layout_centerInParent="true"
                 android:layout_height="50dp"
                 android:layout_width ="50dp"
                 android:scaleType="fitCenter"
-                android:padding="8dp"
-                android:onClick="makeCall"/>
+                android:padding="8dp" />
         </RelativeLayout>
 
     </LinearLayout>
