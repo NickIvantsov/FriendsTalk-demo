@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private SharedPreferences mSharedPreferences;
     private TextView mUsernameTV;
-    private EditText mCallNumET;
+    private EditText mCallNumET,room_et;
 
     private Pubnub mPubNub;
 
@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mCallNumET = (EditText) findViewById(R.id.call_num);
+        room_et = (EditText) findViewById(R.id.room_et); //имя комнаты для трансляции потоков
+        mUsernameTV = (TextView) findViewById(R.id.main_username);
 
         callBtn = findViewById(R.id.call_btn);
         callBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
         username = mSharedPreferences.getString(Constants.USER_NAME, "");
 
-        mCallNumET = (EditText) findViewById(R.id.call_num);
-        mUsernameTV = (TextView) findViewById(R.id.main_username);
+
 
         mUsernameTV.setText(username);  // Set the username to the username text view
 
@@ -164,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int user_num = mSharedPreferences.getInt(Constants.USER_NUM,0);
 
+
                         /*if (user_num<=0){*/
                             // Consider Accept/Reject call here
                             //зесь мы инициализируем открытие нового окна для запуска видео/аудио трансляции
@@ -172,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra(Constants.USER_NAME, username);
                             intent.putExtra(Constants.JSON_CALL_USER, user);
                             //запускаем новое activity
-                            user_num++;
+                            Log.d(TAG," " +user_num );
+                            user_num = 0;
                             SharedPreferences.Editor edit = mSharedPreferences.edit();
                             edit.putInt(Constants.USER_NUM,user_num);
                             edit.apply();

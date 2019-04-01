@@ -7,9 +7,7 @@ import android.content.pm.PackageManager;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -165,18 +163,18 @@ public class VideoChatActivity extends Activity {
         // Then we set that view, and pass a Runnable to run once the surface is ready
         // Затем мы устанавливаем это представление и передаем Runnable
         // запускать, когда поверхность готова
-        VideoRendererGui.setView(mVideoView, null);
+        VideoRendererGui.setView(mVideoView, null);//TODO тест добавления потока
         SystemClock.sleep(1000);
 
         // Now that VideoRendererGui is ready, we can get our VideoRenderer.
         // IN THIS ORDER. Effects which is on top or bottom
 
         // Теперь, когда VideoRendererGui готов, мы можем получить наш VideoRenderer
-        remoteRender = VideoRendererGui.create(0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_FILL, false);
+        remoteRender = VideoRendererGui.create(0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_BALANCED, false);//SCALE_ASPECT_FILL
 
         // И наконец, с нашим готовым VideoRenderer, мы
         // можем добавить наш рендерер в VideoTrack.
-        localRender = VideoRendererGui.create(0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_FILL, true);
+        localRender = VideoRendererGui.create(0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_BALANCED, true);
 
         //endregion
 
@@ -282,8 +280,8 @@ public class VideoChatActivity extends Activity {
 
 
                             remoteStream.videoTracks.get(0).addRenderer(new VideoRenderer(remoteRender));
-                            VideoRendererGui.update(remoteRender, 0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_FILL, false);
-                            VideoRendererGui.update(localRender, 72, 72, 25, 25, VideoRendererGui.ScalingType.SCALE_ASPECT_FIT, true);
+                            VideoRendererGui.update(remoteRender, 0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_FILL, false);//SCALE_ASPECT_FILL
+                            VideoRendererGui.update(localRender, 72, 72, 25, 25, VideoRendererGui.ScalingType.SCALE_ASPECT_FIT, true);//SCALE_ASPECT_FIT
 
                     } catch (Exception e) {
                         e.printStackTrace();
